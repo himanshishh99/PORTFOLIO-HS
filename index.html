@@ -398,8 +398,48 @@ nav{position:fixed;top:0;left:0;right:0;z-index:800;padding:26px 60px;display:fl
   line-height:1.36;
   color:rgba(33,23,25,.72);
 }
+/* ══ POEM TOGGLE ══ */
+.poem-card{min-height:unset;}
+.poem-note-number{
+  font-family:var(--fi);font-style:italic;
+  font-size:11px;letter-spacing:0.3em;
+  color:rgba(109,41,50,.38);
+  margin-bottom:10px;
+}
+.poem-body{
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:max-height 0.72s cubic-bezier(0.23,1,0.32,1), opacity 0.5s ease;
+  margin-top:0;
+}
+.poem-card.open .poem-body{
+  max-height:900px;
+  opacity:1;
+  margin-top:18px;
+}
+.poem-toggle{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:16px;
+  background:none;border:none;padding:0;cursor:pointer;
+  font-family:var(--fb);font-size:9px;letter-spacing:0.32em;text-transform:uppercase;
+  color:rgba(109,41,50,.6);
+  transition:color 0.3s, gap 0.3s;
+}
+.poem-toggle:hover{color:var(--crimson);}
+.pt-icon{
+  display:inline-block;
+  transition:transform 0.45s cubic-bezier(0.23,1,0.32,1);
+  font-size:11px;
+}
+.poem-card.open .pt-icon{transform:rotate(180deg);}
+.poem-card.open .pt-label::before{content:'close ';opacity:0.5;}
+.poem-card.open .poem-toggle .pt-label{letter-spacing:0.28em;}
+
+/* keep cards from being too tall collapsed */
 .poem-card:nth-child(2){transform:translateY(18px);background:radial-gradient(circle at 20% 12%,rgba(199,123,138,.16),transparent 24%),linear-gradient(145deg,#fff8eb,#ead9c8);}
 .poem-card:nth-child(3){transform:translateY(-8px);background:radial-gradient(circle at 80% 18%,rgba(126,154,130,.16),transparent 24%),linear-gradient(145deg,#fff9ef,#efe3cf);}
+
 
 /* ══ FOOTER / CONTACT ══ */
 .f-inner{text-align:center;position:relative;z-index:10;padding:100px 80px;}
@@ -629,6 +669,8 @@ nav{
 .ticket.blue .t-stub{background:linear-gradient(135deg,#4b617f,#6D2932);}
 .ticket.sage .t-stub{background:linear-gradient(135deg,#527861,#6D2932);}
 .ticket.sage .t-img-zone{background:linear-gradient(145deg,#17332d,#527861 52%,#d6a45a);}
+.ticket.rose .t-stub{background:linear-gradient(135deg,#1a0f2e,#2d1060 55%,#0f1a3a);}
+.ticket.rose .t-stub *{color:rgba(200,185,255,0.92)!important;}
 .sk-grid{text-align:center;}
 .sk-items{justify-content:center;}
 .sk-chip:nth-child(4n+1)::after{background:var(--saffron);}
@@ -1040,7 +1082,8 @@ nav{
           </div>
         </div>
       </div>
-        <!-- TICKET 4 — ACM IGDTUW -->
+
+      <!-- TICKET 4 — ACM IGDTUW -->
       <div class="ticket rose" data-r="left" data-delay="0.3">
         <div class="t-img-zone" style="background:linear-gradient(145deg,#07080f,#0f0e2a 48%,#1a0f2e)">
           <div class="t-proj-art" style="">
@@ -1187,8 +1230,13 @@ nav{
 
   <div class="poetry-shelf" data-sg>
     <article class="poem-card">
+      <div class="poem-note-number">I</div>
       <h3 class="poem-title">Parallel lovers</h3>
-      <div class="poem-body">The horizon and the sea 
+      <button class="poem-toggle" aria-expanded="false">
+        <span class="pt-label">read note</span>
+        <span class="pt-icon">↓</span>
+      </button>
+      <div class="poem-body" aria-hidden="true">The horizon and the sea 
 There is something between us
 There is also nothing between us
 
@@ -1202,26 +1250,36 @@ Yet the echoes of your response gets lost through.
 To those with sight, you and I, my love
 Are surely a sight.
 I caress you along the shore line, 
-Like a melody that’s supposedly mine.
+Like a melody that's supposedly mine.
 I hunt for you, day and night,
-If only for the brief moments where I appear to embrace you for “auld lang syne”. 
+If only for the brief moments where I appear to embrace you for "auld lang syne". 
 
 Perhaps in some universe my beloved, we may collide.</div>
     </article>
 
     <article class="poem-card">
+      <div class="poem-note-number">II</div>
       <h3 class="poem-title">The space people leave behind</h3>
-      <div class="poem-body">There’s a hollow space people leave behind, much like a gigantic tree stolen from a thicket so uptight, that on that hollow land now only grief suffices.
-It’s suffocating; all that open space; which is ironic considering breathing liberated me so often and now that empty land chases me off to a land I can’t yet call forgotten.
-I hold my breath when I so much so even look at the space left behind; hoping it takes away the wounds I can’t hide.
+      <button class="poem-toggle" aria-expanded="false">
+        <span class="pt-label">read note</span>
+        <span class="pt-icon">↓</span>
+      </button>
+      <div class="poem-body" aria-hidden="true">There's a hollow space people leave behind, much like a gigantic tree stolen from a thicket so uptight, that on that hollow land now only grief suffices.
+It's suffocating; all that open space; which is ironic considering breathing liberated me so often and now that empty land chases me off to a land I can't yet call forgotten.
+I hold my breath when I so much so even look at the space left behind; hoping it takes away the wounds I can't hide.
 
-It shouldn’t be so hard, considering it was snatched from me upright, yet the bloodstains still cover the canopy left behind. {waiting, holding space, with hope above all}
-Shouldn’t have been that hard; considering, even the rain bent down and whispered it’s failed attempts at washing away the smeared darkness I hold so profound.</div>
+It shouldn't be so hard, considering it was snatched from me upright, yet the bloodstains still cover the canopy left behind. {waiting, holding space, with hope above all}
+Shouldn't have been that hard; considering, even the rain bent down and whispered it's failed attempts at washing away the smeared darkness I hold so profound.</div>
     </article>
 
     <article class="poem-card">
+      <div class="poem-note-number">III</div>
       <h3 class="poem-title">When the last leaf falls</h3>
-      <div class="poem-body">When the last river dries 
+      <button class="poem-toggle" aria-expanded="false">
+        <span class="pt-label">read note</span>
+        <span class="pt-icon">↓</span>
+      </button>
+      <div class="poem-body" aria-hidden="true">When the last river dries 
 When the last child cries 
 When the last tear fades
 When the facade truly breaks
@@ -1375,7 +1433,7 @@ window.addEventListener('load',()=>{
 
 /* ── BARCODES ── */
 window.addEventListener('load',()=>{
-  ['bc1','bc2','bc3'].forEach(id=>{
+  ['bc1','bc2','bc3','bc4'].forEach(id=>{
     const el=document.getElementById(id);if(!el)return;
     const widths=[3,1,2,1,3,2,1,2,3,1,2,3,1,2,1,3,2,1,3,2,1,2,3,1,2,1,3];
     widths.forEach((w,i)=>{const bar=document.createElement('span');bar.style.cssText=`height:${24+Math.sin(i)*10}px;width:${w<=1?2:w<=2?3:4}px;`;el.appendChild(bar);});
@@ -1387,6 +1445,19 @@ window.addEventListener('load',()=>{
   const st=document.createElement('style');st.textContent='@keyframes cf{from{transform:translateY(0)}to{transform:translateY(-4px)}}';document.head.appendChild(st);
   document.querySelectorAll('.sk-chip').forEach((c,i)=>{c.style.animation=`cf ${3+(i%4)*0.7}s ${(i*0.15)%2}s ease-in-out infinite alternate`;});
 });
+
+/* ── POEM TOGGLE ── */
+(function(){
+  document.querySelectorAll('.poem-toggle').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const card=btn.closest('.poem-card');
+      const body=card.querySelector('.poem-body');
+      const isOpen=card.classList.toggle('open');
+      btn.setAttribute('aria-expanded',isOpen);
+      body.setAttribute('aria-hidden',!isOpen);
+    });
+  });
+})();
 </script>
 </body>
 </html>
